@@ -1,0 +1,11 @@
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb;DATABASE_TO_LOWER=TRUE;MODE=MySQL;
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    locations: classpath:/db
