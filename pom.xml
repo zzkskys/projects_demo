@@ -6,6 +6,7 @@
     <modules>
         <module>flyway-test</module>
         <module>spring-test</module>
+        <module>remote-debug</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -36,10 +37,6 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
