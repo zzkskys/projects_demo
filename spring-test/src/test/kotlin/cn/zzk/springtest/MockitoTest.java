@@ -1,4 +1,4 @@
-package cn.zzk.kotlintest;
+package cn.zzk.springtest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

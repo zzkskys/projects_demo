@@ -1,4 +1,4 @@
-package cn.zzk.kotlintest
+package cn.zzk.springtest
 
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
