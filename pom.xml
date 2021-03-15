@@ -7,6 +7,7 @@
         <module>flyway-test</module>
         <module>spring-test</module>
         <module>remote-debug</module>
+        <module>test-container</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -62,7 +63,6 @@
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
-                        <plugin>jpa</plugin>
                     </compilerPlugins>
                 </configuration>
                 <dependencies>
