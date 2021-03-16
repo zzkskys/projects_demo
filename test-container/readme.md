@@ -30,7 +30,7 @@
 </dependency>
 ```
 
-### 1.1 Spring Data JPA 集成
+### 1.1 Spring Data JPA 集成 -- springboot(高版本)
 
 ```kotlin
 
@@ -74,5 +74,46 @@ class MysqlTestContainerDemoTest {
         val users = userRepo.findUsers()
         assertEquals(1, users.size)
     }
+}
+```
+
+### 1.2 Spring Data JPA 集成 (spring boot 低版本)
+
+```java
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@DataJpaTest
+@ContextConfiguration(initializers = {CategoryQueryRepoTest.Initializer.class})
+@Testcontainers
+class CategoryQueryRepoTest {
+
+    @Autowired
+    private CategoryQueryRepo repo;
+
+    @Container
+    private static final MySQLContainer<?> db = new MySQLContainer<>(DockerImageName.parse("mysql").withTag("5.7.22"));
+
+    static class Initializer
+            implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+        public void initialize(ConfigurableApplicationContext context) {
+            TestPropertyValues.of(
+                    "spring.datasource.url=" + db.getJdbcUrl(),
+                    "spring.datasource.username=" + db.getUsername(),
+                    "spring.datasource.password=" + db.getPassword(),
+                    "spring.jpa.hibernate.ddl-auto=update"
+            ).applyTo(context.getEnvironment());
+        }
+    }
+
+    @AfterAll
+    static void after(){
+        db.stop();
+    }
+
+    @Test
+    void findAtTheWarehouseAll() {
+        List<AtTheWarehouse> list = repo.findAtTheWarehouseAll("a", Arrays.asList("1"));
+        assertEquals(0, list.size());
+    }
+
 }
 ```
