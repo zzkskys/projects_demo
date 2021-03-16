@@ -104,11 +104,6 @@ class CategoryQueryRepoTest {
         }
     }
 
-    @AfterAll
-    static void after(){
-        db.stop();
-    }
-
     @Test
     void findAtTheWarehouseAll() {
         List<AtTheWarehouse> list = repo.findAtTheWarehouseAll("a", Arrays.asList("1"));
