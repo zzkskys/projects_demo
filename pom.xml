@@ -9,6 +9,7 @@
         <module>remote-debug</module>
         <module>test-container</module>
         <module>ddd-simple</module>
+        <module>api-version</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
