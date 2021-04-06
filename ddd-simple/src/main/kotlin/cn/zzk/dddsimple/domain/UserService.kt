@@ -1,19 +1,18 @@
 package cn.zzk.dddsimple.domain
 
+import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 
 @Service
-class UserService(
-    private val userRepo: UserRepo
-) {
+class UserService {
 
-    fun add(user: User): User {
-        if (userRepo.existsByName(user.name)) {
-            throw IllegalArgumentException("用户名不可重复")
-        }
-        if (userRepo.existsById(user.id)) {
-            throw IllegalArgumentException("用户 id 不可重复")
-        }
-        return userRepo.save(user)
+    @EventListener
+    fun whenever(event: UserSaved) {
+        println("保存一个用户")
+    }
+
+    @EventListener
+    fun whenever(event: NameChanged) {
+        println("更改用户姓名")
     }
 }
