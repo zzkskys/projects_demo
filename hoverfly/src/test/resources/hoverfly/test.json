@@ -1,0 +1,62 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : [ {
+          "matcher" : "exact",
+          "value" : ""
+        } ],
+        "method" : [ {
+          "matcher" : "exact",
+          "value" : "GET"
+        } ],
+        "destination" : [ {
+          "matcher" : "exact",
+          "value" : "localhost:8080"
+        } ],
+        "scheme" : [ {
+          "matcher" : "exact",
+          "value" : "http"
+        } ],
+        "body" : [ {
+          "matcher" : "exact",
+          "value" : ""
+        } ],
+        "headers" : {
+          "Accept" : [ {
+            "matcher" : "exact",
+            "value" : "text/plain, application/xml, text/xml, application/json, application/*+xml, application/*+json, */*"
+          } ],
+          "Proxy-Connection" : [ {
+            "matcher" : "exact",
+            "value" : "keep-alive"
+          } ],
+          "User-Agent" : [ {
+            "matcher" : "exact",
+            "value" : "Java/1.8.0_252"
+          } ]
+        }
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "hello",
+        "encodedBody" : false,
+        "templated" : false,
+        "headers" : {
+          "Content-Length" : [ "5" ],
+          "Content-Type" : [ "text/plain;charset=UTF-8" ],
+          "Date" : [ "Thu, 06 May 2021 08:43:55 GMT" ],
+          "Hoverfly" : [ "Was-Here" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v5.1",
+    "hoverflyVersion" : "v1.3.1",
+    "timeExported" : "2021-05-06T16:43:55+08:00"
+  }
+}

@@ -11,6 +11,7 @@
         <module>ddd-simple</module>
         <module>api-version</module>
         <module>map-struct-test</module>
+        <module>hoverfly</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
