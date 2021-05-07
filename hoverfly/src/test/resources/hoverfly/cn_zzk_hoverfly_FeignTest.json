@@ -1,0 +1,48 @@
+{
+  "data" : {
+    "pairs" : [ {
+      "request" : {
+        "path" : [ {
+          "matcher" : "exact",
+          "value" : "/police-support-platform/suppliers"
+        } ],
+        "method" : [ {
+          "matcher" : "exact",
+          "value" : "GET"
+        } ],
+        "destination" : [ {
+          "matcher" : "exact",
+          "value" : "192.168.1.254:8040"
+        } ],
+        "scheme" : [ {
+          "matcher" : "exact",
+          "value" : "http"
+        } ],
+        "body" : [ {
+          "matcher" : "exact",
+          "value" : ""
+        } ]
+      },
+      "response" : {
+        "status" : 200,
+        "body" : "[{\"name\":\"供应商a\",\"person\":\"小华\",\"phone\":\"18367713520\",\"id\":\"1\",\"creatorId\":null,\"modifyId\":null}]",
+        "encodedBody" : false,
+        "templated" : false,
+        "headers" : {
+          "Content-Type" : [ "application/json" ],
+          "Date" : [ "Fri, 07 May 2021 02:06:20 GMT" ],
+          "Hoverfly" : [ "Was-Here" ],
+          "Vary" : [ "Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers" ]
+        }
+      }
+    } ],
+    "globalActions" : {
+      "delays" : [ ]
+    }
+  },
+  "meta" : {
+    "schemaVersion" : "v5",
+    "hoverflyVersion" : "v1.1.5",
+    "timeExported" : "2021-05-07T10:06:19+08:00"
+  }
+}

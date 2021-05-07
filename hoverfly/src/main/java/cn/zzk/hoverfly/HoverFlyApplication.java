@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
+//@EnableFeignClients
 @SpringBootApplication
 public class HoverFlyApplication {
     public static void main(String[] args) {
@@ -19,6 +22,12 @@ public class HoverFlyApplication {
         @GetMapping
         public String hello() {
             return "hello";
+        }
+
+
+        @GetMapping("/uuid")
+        public String uuid() {
+            return UUID.randomUUID().toString();
         }
     }
 }
