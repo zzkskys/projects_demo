@@ -1,0 +1,28 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info,health,scheduledtasks,auditevents,conditions,configprops,hardware,env,loggers,logfile
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8025
+        instance:
+          prefer-ip: true
+  application:
+    name: actouator-test
+
+# spring actuator
+info:
+  name: hello
+  version: @project.version@
+
+logging:
+  file:
+    path: d:/temp/
