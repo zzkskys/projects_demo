@@ -13,6 +13,7 @@
         <module>map-struct-test</module>
         <module>hoverfly</module>
         <module>spring-actuator-test</module>
+        <module>cucumber-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
