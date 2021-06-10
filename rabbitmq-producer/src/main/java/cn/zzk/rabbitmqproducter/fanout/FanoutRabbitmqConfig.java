@@ -1,4 +1,4 @@
-package cn.zzk.rabbitmqproducter;
+package cn.zzk.rabbitmqproducter.fanout;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RabbitmqConfig {
+public class FanoutRabbitmqConfig {
 
     /**
      * 订单交换机,用于订单的生成

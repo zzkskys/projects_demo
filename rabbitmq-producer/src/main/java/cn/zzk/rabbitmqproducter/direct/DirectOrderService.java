@@ -1,4 +1,4 @@
-package cn.zzk.rabbitmqproducter;
+package cn.zzk.rabbitmqproducter.direct;
 
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -6,19 +6,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class OrderService {
+public class DirectOrderService {
 
-    private final RabbitTemplate rabbitTemplate;
-
+    private final RabbitTemplate template;
 
     /**
      * fanout模式
      */
-    public void generateOrder(String userId) {
+    public void generateOrder(String userId, DirectRoutingKey key) {
         String message = "某用户下单了, userId : " + userId;
-        String routingKey = "";
-        rabbitTemplate.convertAndSend(RabbitmqConfig.ORDER_EXCHANGE, routingKey, message);
+        template.convertAndSend(DirectRabbitmqConfig.EXCHANGE_NAME, key.getKey(), message);
     }
-
 
 }
