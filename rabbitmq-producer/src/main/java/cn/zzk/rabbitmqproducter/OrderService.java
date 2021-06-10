@@ -19,4 +19,6 @@ public class OrderService {
         String routingKey = "";
         rabbitTemplate.convertAndSend(RabbitmqConfig.ORDER_EXCHANGE, routingKey, message);
     }
+
+
 }
