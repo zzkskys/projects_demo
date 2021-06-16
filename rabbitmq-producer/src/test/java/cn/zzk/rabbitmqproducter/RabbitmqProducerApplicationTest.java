@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -56,6 +57,24 @@ class RabbitmqProducerApplicationTest {
     @Test
     void jsonTest() {
         rabbitTemplate.convertAndSend("json.test", new Person().setId("1").setName("张三").setAge(20));
+    }
+
+    @DisplayName("ttl 测试")
+    @Test
+    void ttlTest() {
+        rabbitTemplate.convertAndSend("ttl.test", "hello");
+        rabbitTemplate.convertAndSend("ttl.test", "hello", (message -> {
+            MessageProperties properties = message.getMessageProperties();
+            properties.setExpiration("3000");
+            properties.setContentEncoding("UTF-8");
+            return message;
+        }));
+    }
+
+    @DisplayName("死信队列测试")
+    @Test
+    void ttlDeadTest() {
+        rabbitTemplate.convertAndSend("ttl.dead", "hello");
     }
 
     @Data
