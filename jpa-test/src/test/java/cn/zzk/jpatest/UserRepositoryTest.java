@@ -1,5 +1,8 @@
 package cn.zzk.jpatest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -23,6 +26,8 @@ class UserRepositoryTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void nativeFindAll() {
@@ -71,6 +76,35 @@ class UserRepositoryTest {
                 }).collect(Collectors.toList());
         assertEquals(1, collect.size());
         assertNull(collect.get(0).getLocation());
+
+    }
+
+    @Test
+    void nativeFindAll2() throws JsonProcessingException {
+        Location location = Location.createCabinetLocation("1", "1");
+        User user = new User().setName("张三").setLocation(location);
+        Phone phone = new Phone().setUser(user);
+        location.setPhone(phone);
+        entityManager.persist(location);
+        entityManager.persist(user);
+        entityManager.persist(phone);
+
+        List<User> users = userRepository.nativeFindAll();
+        assertEquals(1, users.size());
+        User user1 = users.get(0);
+
+
+        assertThrows(JsonMappingException.class, () -> objectMapper.writeValueAsString(user1));
+
+
+        List<User> list = jdbcTemplate.query("select * from user", (rs, index) -> {
+            User user2 = new User();
+            user2.setId(rs.getString("id"));
+            user2.setName(rs.getString("name"));
+            return user2;
+        });
+        assertEquals(1, list.size());
+        assertNull(list.get(0).getLocation());
 
     }
 }

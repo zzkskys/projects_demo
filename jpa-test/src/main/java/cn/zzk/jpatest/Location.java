@@ -2,11 +2,14 @@ package cn.zzk.jpatest;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.UUID;
 
+@Accessors(chain = true)
 @Entity
 @Getter
 @Setter
@@ -19,6 +22,8 @@ public class Location {
     private String floor;
     private String section;
 
+    @ManyToOne
+    private Phone phone;
 
     /**
      * 创建车辆位置
