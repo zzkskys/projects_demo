@@ -27,7 +27,7 @@ class UserRepositoryTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Test
     void nativeFindAll() {
@@ -39,11 +39,21 @@ class UserRepositoryTest {
 
         List<User> users = userRepository.nativeFindAll();
         assertEquals(1, users.size());
-
         //因为拿到是实体(或者说是被 hibernate 代理的实体), EntityManager 会偷偷的查询 Location
         assertNotNull(users.get(0).getLocation());
 
 
+        List<User> users2 = entityManager
+                .getEntityManager()
+                .createNativeQuery("select id,name ,location_id from user", User.class)
+                .getResultList();
+
+        assertEquals(1, users2.size());
+        //因为拿到是实体(或者说是被 hibernate 代理的实体), EntityManager 会偷偷的查询 Location
+        assertNotNull(users2.get(0).getLocation());
+
+
+        // jdbcTemplate 获取数据
         List<User> list = jdbcTemplate.query("select * from user", (rs, index) -> {
             User user1 = new User();
             user1.setId(rs.getString("id"));
@@ -62,6 +72,7 @@ class UserRepositoryTest {
         assertNotNull(resultList.get(0).getLocation());
 
 
+        // 测试使用 tuple 获取 数据
         List<Tuple> resultList1 = entityManager
                 .getEntityManager()
                 .createNativeQuery("select * from user", Tuple.class)
@@ -76,6 +87,7 @@ class UserRepositoryTest {
                 }).collect(Collectors.toList());
         assertEquals(1, collect.size());
         assertNull(collect.get(0).getLocation());
+
 
     }
 
