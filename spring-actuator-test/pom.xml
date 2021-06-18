@@ -27,5 +27,11 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-client</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
     </dependencies>
 </project>

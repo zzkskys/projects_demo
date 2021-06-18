@@ -2,17 +2,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health,scheduledtasks,auditevents,conditions,configprops,hardware,env,loggers,logfile
+        include: '*'
   endpoint:
-    shutdown:
-      enabled: true
     health:
       show-details: always
 spring:
   boot:
     admin:
       client:
-        url: http://localhost:8025
+        url: http://192.168.1.254:8025
         instance:
           prefer-ip: true
   application:
