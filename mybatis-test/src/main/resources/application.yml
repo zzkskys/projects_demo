@@ -1,0 +1,16 @@
+mybatis:
+  #扫描 mapper 的配置
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    # 将驼峰转换成下划线
+    map-underscore-to-camel-case: true
+
+
+spring:
+  flyway:
+    locations: classpath:/db
+
+pagehelper:
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
