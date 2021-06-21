@@ -32,6 +32,8 @@
 
 ### 1.1 Spring Data JPA 集成 -- springboot(高版本)
 
+若每个测试都启动一个 `mysql` 容器:
+
 ```kotlin
 
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -77,6 +79,74 @@ class MysqlTestContainerDemoTest {
 }
 ```
 
+若一次测试只启动一个 `mysql` 容器 : 
+```kotlin
+abstract class MysqlInit {
+    companion object {
+        //        @Container
+        val database = MySQLContainer<Nothing>(DockerImageName.parse("mysql").withTag("5.7.22"))
+
+        init {
+            database.start()
+        }
+
+        @DynamicPropertySource
+        @JvmStatic
+        fun registerDynamicProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.datasource.url", database::getJdbcUrl)
+            registry.add("spring.datasource.username", database::getUsername)
+            registry.add("spring.datasource.password", database::getPassword)
+            registry.add("spring.jpa.hibernate.ddl-auto") { "update" }
+        }
+    }
+}
+
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@DataJpaTest
+//@Testcontainers
+class MysqlTestContainerDemoTest : MysqlInit() {
+
+    @Autowired
+    lateinit var userRepo: UserRepo
+
+//    companion object {
+//        @Container
+//        val database = MySQLContainer<Nothing>(DockerImageName.parse("mysql").withTag("5.7.22"))
+//
+//        @DynamicPropertySource
+//        @JvmStatic
+//        fun registerDynamicProperties(registry: DynamicPropertyRegistry) {
+//            registry.add("spring.datasource.url", database::getJdbcUrl)
+//            registry.add("spring.datasource.username", database::getUsername)
+//            registry.add("spring.datasource.password", database::getPassword)
+//            registry.add("spring.jpa.hibernate.ddl-auto") { "update" }
+//        }
+//    }
+
+
+    @Test
+    fun setup() {
+        println("url : ${database.jdbcUrl}")
+        println("username : ${database.username}")
+        println("password : ${database.password}")
+        assertNotNull(userRepo)
+    }
+
+    @RepeatedTest(value = 5)
+    @Sql(
+        statements = [
+            "insert into user (id,name,age) values ('1','张三',18);"
+        ]
+    )
+    fun findAll() {
+        val users = userRepo.findUsers()
+        assertEquals(1, users.size)
+    }
+
+}
+
+```
+
 ### 1.2 Spring Data JPA 集成 (spring boot 低版本)
 
 ```java
@@ -111,4 +181,6 @@ class CategoryQueryRepoTest {
     }
 
 }
+
+
 ```
