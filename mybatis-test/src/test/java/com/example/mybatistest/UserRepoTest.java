@@ -6,6 +6,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +22,10 @@ class UserRepoTest {
     private UserRepo userRepo;
 
 
+    @Sql(statements = {
+            "insert into user(id, name, create_time) values ('1', '张三', '2021-06-21')",
+            "insert into user(id, name, create_time) values ('2', '李四', '2021-06-23')",
+    })
     @Test
     void findAll() {
         assertNotNull(userRepo);
@@ -28,7 +33,10 @@ class UserRepoTest {
         assertEquals(2, all.size());
     }
 
-
+    @Sql(statements = {
+            "insert into user(id, name, create_time) values ('1', '张三', '2021-06-21')",
+            "insert into user(id, name, create_time) values ('2', '李四', '2021-06-23')",
+    })
     @Test
     void findUsers() {
         assertNotNull(userRepo);
@@ -38,9 +46,10 @@ class UserRepoTest {
     }
 
 
-    /**
-     * 因为 mybatis 的 PageHelper 拦截器没有加入,则无法实现拦截分页
-     */
+    @Sql(statements = {
+            "insert into user(id, name, create_time) values ('1', '张三', '2021-06-21')",
+            "insert into user(id, name, create_time) values ('2', '李四', '2021-06-23')",
+    })
     @Test
     void findPage() {
         UserQuery userQuery = new UserQuery();
@@ -48,6 +57,4 @@ class UserRepoTest {
         assertEquals(2, page.getTotal());
         assertEquals(1, page.getList().size());
     }
-
-
 }
