@@ -18,6 +18,7 @@
         <module>rabbitmq-producer</module>
         <module>jpa-test</module>
         <module>mybatis-test</module>
+        <module>arch-unit-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
