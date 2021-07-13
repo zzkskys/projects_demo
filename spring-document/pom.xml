@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>projects-demo</artifactId>
+        <groupId>cn.zzk</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-document</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.swagger2markup</groupId>
+            <artifactId>swagger2markup</artifactId>
+            <version>1.3.3</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <!--asciidoc文件目录-->
+                    <sourceDirectory>src/main/resources/docs</sourceDirectory>
+                    <!---生成html的路径-->
+                    <outputDirectory>src/main/resources/html</outputDirectory>
+                    <backend>html</backend>
+                    <attributes>
+                        <!--导航栏在左-->
+                        <toc>left</toc>
+                        <!--显示层级数-->
+                        <!--<toclevels>3</toclevels>-->
+                        <!--自动打数字序号-->
+                        <sectnums>true</sectnums>
+                    </attributes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

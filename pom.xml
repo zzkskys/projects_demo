@@ -19,6 +19,7 @@
         <module>jpa-test</module>
         <module>mybatis-test</module>
         <module>arch-unit-test</module>
+        <module>spring-document</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
