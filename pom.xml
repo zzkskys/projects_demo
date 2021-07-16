@@ -20,11 +20,12 @@
         <module>mybatis-test</module>
         <module>arch-unit-test</module>
         <module>spring-document</module>
+        <module>mybatis-plus-test</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
+        <version>2.4.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>cn.zzk</groupId>
