@@ -1,5 +1,6 @@
 package com.example.mybatisplus.domain;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.test.autoconfigure.MybatisPlusTest;
 import com.example.mybatisplus.config.MybatisPlusConfig;
 import org.junit.jupiter.api.Test;
@@ -53,5 +54,17 @@ class UserRepositoryTest {
         assertEquals(1, userRepository.updateById(user));
         assertEquals(1, userRepository.selectById(1).getVersion());
 
+    }
+
+    /**
+     * lambda  表达式查询,推荐单表查询使用
+     */
+    @Test
+    void query1() {
+        LambdaQueryWrapper<User> jone = new LambdaQueryWrapper<User>()
+                .eq(User::getName, "Jone")
+                .and(user -> user.eq(User::getAge, 18));
+        List<User> users = userRepository.selectList(jone);
+        assertEquals(1, users.size());
     }
 }
