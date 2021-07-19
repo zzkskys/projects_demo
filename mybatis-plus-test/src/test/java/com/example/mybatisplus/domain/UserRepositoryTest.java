@@ -35,7 +35,10 @@ class UserRepositoryTest {
         User user = new User()
                 .setAge(18)
                 .setName("张三")
-                .setEmail("233@qq.com").setRole(Role.ADMIN);
+                .setEmail("233@qq.com")
+                .setRole(Role.ADMIN)
+                .setContact(new Contact("7474741","233@qq.com"))
+                ;
         userRepository.insert(user);
         long id = user.getId();
 
