@@ -2,6 +2,7 @@ package com.example.mybatisplus.domain;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,16 +14,34 @@ import java.util.Objects;
 @Setter
 public abstract class AbstractEntity {
 
+    /**
+     * 主键 id
+     */
     private Long id;
 
+    /**
+     * 创建时间
+     */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    /**
+     * 更新时间
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
+    /**
+     * 乐观锁
+     */
     @Version
     private int version;
+
+    /**
+     * 逻辑删除
+     */
+    @TableLogic
+    private boolean deleted = false;
 
     @Override
     public boolean equals(Object o) {

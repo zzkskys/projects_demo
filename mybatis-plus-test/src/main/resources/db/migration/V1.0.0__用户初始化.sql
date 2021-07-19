@@ -7,5 +7,6 @@ CREATE TABLE user
 
     create_time datetime    null comment '创建时间',
     update_time datetime    null comment '更新时间',
-    version     int(8)      not null default 0 comment '乐观锁'
+    version     int(8)      not null default 0 comment '乐观锁',
+    deleted     bit(1)      not null default false comment '逻辑删除'
 );

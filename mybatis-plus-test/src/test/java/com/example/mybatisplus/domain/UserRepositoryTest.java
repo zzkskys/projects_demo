@@ -1,6 +1,8 @@
 package com.example.mybatisplus.domain;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.test.autoconfigure.MybatisPlusTest;
 import com.example.mybatisplus.config.MybatisPlusConfig;
 import org.junit.jupiter.api.Test;
@@ -66,5 +68,22 @@ class UserRepositoryTest {
                 .and(user -> user.eq(User::getAge, 18));
         List<User> users = userRepository.selectList(jone);
         assertEquals(1, users.size());
+    }
+
+    @Test
+    void findAllPage() {
+        IPage<User> page = userRepository.findAll(new Page<>(0, 1));
+        assertEquals(1, page.getRecords().size());
+        assertEquals(5, page.getTotal());
+    }
+
+    @Test
+    void findDeleted() {
+        userRepository.deleteById(1);
+        List<User> users = userRepository.selectList(null);
+        assertEquals(4, users.size());
+
+        List<User> deleted = userRepository.findDeleted();
+        assertEquals(1,deleted.size());
     }
 }
