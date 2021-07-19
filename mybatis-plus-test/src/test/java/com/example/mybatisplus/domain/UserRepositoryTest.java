@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.test.autoconfigure.MybatisPlusTest;
 import com.example.mybatisplus.config.MybatisPlusConfig;
+import com.example.mybatisplus.handler.TimeHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Import(MybatisPlusConfig.class)
+@Import({MybatisPlusConfig.class, TimeHandler.class})
 @MybatisPlusTest
 class UserRepositoryTest {
 
@@ -34,7 +35,7 @@ class UserRepositoryTest {
         User user = new User()
                 .setAge(18)
                 .setName("张三")
-                .setEmail("233@qq.com");
+                .setEmail("233@qq.com").setRole(Role.ADMIN);
         userRepository.insert(user);
         long id = user.getId();
 
