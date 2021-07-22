@@ -1,4 +1,4 @@
-package cn.zzk.testcontainer
+package cn.zzk.testcontainer.init
 
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource

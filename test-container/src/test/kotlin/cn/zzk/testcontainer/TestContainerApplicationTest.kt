@@ -1,5 +1,6 @@
 package cn.zzk.testcontainer
 
+import cn.zzk.testcontainer.init.MysqlInit
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.RepeatedTest
 import org.springframework.beans.factory.annotation.Autowired
