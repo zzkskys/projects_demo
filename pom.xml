@@ -21,6 +21,7 @@
         <module>arch-unit-test</module>
         <module>spring-document</module>
         <module>mybatis-plus-test</module>
+        <module>quartz</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

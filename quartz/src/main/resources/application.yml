@@ -1,0 +1,29 @@
+spring:
+
+  datasource:
+    username: root
+    password: qunchuang@123
+    url: jdbc:mysql://localhost:3306/quartz?useSSL=false&characterEncoding=utf-8&serverTimezone=GMT%2b8&nullCatalogMeansCurrent=true
+
+
+  # 默认情况下使用标准的 quartz 创建脚本时会删除之前创建的 quartz 数据，因此可自定义 quartz 脚本创建
+  quartz:
+    job-store-type: jdbc
+    # 程序结束时会等待 quartz 执行结束
+    wait-for-jobs-to-complete-on-shutdown: true
+    # QuartzScheduler启动时更新己存在的Job,这样就不用每次修改targetObject后删除qrtz_job_details表对应记录
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          # scheduler相关
+          scheduler:
+            # scheduler的实例名
+            instanceName: scheduler
+            instanceId: AUTO
+          # 持久化相关
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
