@@ -1,4 +1,4 @@
-package cn.zzk.rabbitmqproducter;
+package cn.zzk.rabbitmqconsumer.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;

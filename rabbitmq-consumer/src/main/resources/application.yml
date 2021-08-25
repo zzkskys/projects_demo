@@ -1,4 +1,0 @@
-spring:
-  rabbitmq:
-    password: root
-    username: root
