@@ -18,6 +18,7 @@ public class User {
 
     private String name;
 
+    private long createTime;
 
     @ManyToOne
     private Location location;
