@@ -13,4 +13,6 @@ public interface UserRepository extends BaseMapper<User> {
     IPage<User> findAll(Page<User> page);
 
     List<User> findDeleted();
+
+    boolean existsByName(String name);
 }

@@ -22,4 +22,7 @@ public class User extends AbstractEntity {
 
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Contact contact;
+
+
+
 }

@@ -9,11 +9,11 @@ import com.example.mybatisplus.handler.TimeHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Import({MybatisPlusConfig.class, TimeHandler.class})
 @MybatisPlusTest
@@ -89,5 +89,14 @@ class UserRepositoryTest {
 
         List<User> deleted = userRepository.findDeleted();
         assertEquals(1,deleted.size());
+    }
+
+    @Sql(
+            statements = "insert into user(id,name) values (999,'a')"
+    )
+    @Test
+    void existsByName() {
+        assertTrue(userRepository.existsByName("a"));
+        assertFalse(userRepository.existsByName("b"));
     }
 }

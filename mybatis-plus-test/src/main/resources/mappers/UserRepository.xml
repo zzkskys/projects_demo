@@ -7,6 +7,21 @@
     </select>
 
     <select id="findDeleted" resultType="com.example.mybatisplus.domain.User">
-        select id, name, age, email, create_time, update_time, version, deleted from user where deleted = true
+        select id,
+               name,
+               age,
+               email,
+               create_time,
+               update_time,
+               version,
+               deleted
+        from user
+        where deleted = true
+    </select>
+
+    <select id="existsByName" resultType="boolean">
+        select count(*) > 0
+        from user
+        where name = #{name}
     </select>
 </mapper>
