@@ -24,6 +24,7 @@
         <module>quartz</module>
         <module>spring-web</module>
         <module>spring-elasticsearch-demo</module>
+        <module>spring-cache-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
