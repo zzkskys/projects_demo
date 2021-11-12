@@ -15,7 +15,6 @@
         <module>spring-actuator-test</module>
         <module>cucumber-test</module>
         <module>rabbitmq-consumer</module>
-        <module>rabbitmq-producer</module>
         <module>jpa-test</module>
         <module>mybatis-test</module>
         <module>arch-unit-test</module>
