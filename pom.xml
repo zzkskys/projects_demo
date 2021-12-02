@@ -24,6 +24,7 @@
         <module>spring-web</module>
         <module>spring-elasticsearch-demo</module>
         <module>spring-cache-demo</module>
+        <module>spring-webflux-demo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

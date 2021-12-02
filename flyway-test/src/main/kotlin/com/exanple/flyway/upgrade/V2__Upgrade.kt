@@ -1,4 +1,4 @@
-package cn.zzk.flywaytest.upgrade
+package com.exanple.flyway.upgrade
 
 import org.flywaydb.core.api.migration.BaseJavaMigration
 import org.flywaydb.core.api.migration.Context
